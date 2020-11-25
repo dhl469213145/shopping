@@ -11,7 +11,8 @@ import utils.IdWorker;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableSwagger2
-@MapperScan("com.shopping.goods.mapper")
+//@MapperScan("com.shopping.goods.mapper")
+//@MapperScan(basePackages = "classpath*:/mapper/**/*.xml")
 public class GoodsApplication {
 
     public static void main(String[] args) {
