@@ -11,7 +11,7 @@ import utils.IdWorker;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableSwagger2
-//@MapperScan(basePackages = "classpath*:/mapper/**/*.xml")
+@MapperScan("com.shopping.goods.mapper")
 public class GoodsApplication {
 
     public static void main(String[] args) {
@@ -20,5 +20,6 @@ public class GoodsApplication {
 
     @Bean
     public IdWorker idWorker(){
-        return new IdWorker(0,1) ;}
+        return new IdWorker(0,1) ;
+    }
 }

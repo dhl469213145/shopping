@@ -76,6 +76,7 @@ public class R<T> implements Serializable {
     }
 
     public static <T> R<T> data(T data) {
+        if(data == null) return null;
         return data(data, "操作成功");
     }
 
