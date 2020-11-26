@@ -1,20 +1,23 @@
 package com.shopping.goods.cotroller;
 
-import java.util.Arrays;
-import java.util.Map;
-
 import api.R;
 import com.shopping.goods.service.SkuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pojo.dto.SkuSaveDTO;
 import pojo.entity.SkuEntity;
+import springfox.documentation.annotations.ApiIgnore;
 import utils.Constant;
 import utils.PageUtils;
 import utils.ValidatorUtils;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -38,11 +41,10 @@ public class SkuController {
     @GetMapping("/list")
     @ApiOperation(value = "sku列表查询", notes = "sku列表查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "params", value = "当前页", required = true, dataType = "map", paramType = "query"),
-//            @ApiImplicitParam(name = Constant.PAGE, value = "当前页", required = true, dataType = "int", paramType = "query"),
-//            @ApiImplicitParam(name = Constant.LIMIT, value = "显示条目", required = true, dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "显示条目", required = true, dataType = "int"),
     })
-    public R list(Map<String, Object> params){
+    public R list(@ApiIgnore @RequestParam(required = false) Map<String, Object> params){
         PageUtils page = skuService.queryPage(params);
         return R.data(page);
     }
@@ -54,7 +56,7 @@ public class SkuController {
     @GetMapping("/info/{id}")
     @ApiOperation(value = "sku信息", notes = "sku信息")
 //    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "id", value ="id", required = true, dataType = "Long", paramType = "query")
+//            @ApiImplicitParam(name = "id", value ="sku id", required = true, dataType = "Long", paramType = "path")
 //    })
     public R info(@PathVariable("id") Long id){
         SkuEntity sku = skuService.getById(id);
@@ -66,9 +68,11 @@ public class SkuController {
      * 保存
      */
     @PutMapping("/save")
-    public R save(@RequestBody SkuEntity sku){
+    public R save(@RequestBody SkuSaveDTO sku){
         ValidatorUtils.validateEntity(sku);
-        skuService.save(sku);
+        SkuEntity entity = new SkuEntity();
+        BeanUtils.copyProperties(sku, entity);
+        skuService.save(entity);
 
         return R.success("ok");
     }
@@ -80,7 +84,7 @@ public class SkuController {
     public R update(@RequestBody SkuEntity sku){
         ValidatorUtils.validateEntity(sku);
         skuService.updateById(sku);
-        
+
         return R.success("ok");
     }
 
