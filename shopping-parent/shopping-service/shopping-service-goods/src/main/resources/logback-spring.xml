@@ -42,7 +42,7 @@
         </encoder>
         <!-- 打印日志级别 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
+            <level>info</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
@@ -77,9 +77,9 @@
         <appender-ref ref="ERROR-FILE"/>
     </root>
 
+
     <logger name="druid.sql" level="INFO"/>
     <logger name="com.shopping.goods.mapper" level="DEBUG" />
-
 
     <!-- 减少nacos日志 -->
     <logger name="com.alibaba.nacos" level="ERROR"/>
