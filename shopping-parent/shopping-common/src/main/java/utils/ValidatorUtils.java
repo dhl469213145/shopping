@@ -1,7 +1,7 @@
 package utils;
 
 
-import error.DBServiceCode;
+import error.ServiceCode;
 import error.RRException;
 
 import javax.validation.ConstraintViolation;
@@ -37,7 +37,7 @@ public class ValidatorUtils {
             for (ConstraintViolation<Object> constraint : constraintViolations) {
                 msg.append(constraint.getMessage()).append("<br>");
             }
-            throw new RRException(DBServiceCode.DB_PARAM_NULL);
+            throw new RRException(ServiceCode.DB_PARAM_NULL);
         }
     }
 }

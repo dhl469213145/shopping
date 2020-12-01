@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import pojo.dto.SkuSaveDTO;
 import pojo.entity.SkuEntity;
 import springfox.documentation.annotations.ApiIgnore;
-import utils.Constant;
+import utils.DBConstant;
 import utils.PageUtils;
 import utils.ValidatorUtils;
 
@@ -41,8 +41,8 @@ public class SkuController {
     @GetMapping("/list")
     @ApiOperation(value = "sku列表查询", notes = "sku列表查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = Constant.PAGE, value = "当前页", required = true, dataType = "int"),
-            @ApiImplicitParam(name = Constant.LIMIT, value = "显示条目", required = true, dataType = "int"),
+            @ApiImplicitParam(name = DBConstant.PAGE, value = "当前页", required = true, dataType = "int"),
+            @ApiImplicitParam(name = DBConstant.LIMIT, value = "显示条目", required = true, dataType = "int"),
     })
     public R list(@ApiIgnore @RequestParam(required = false) Map<String, Object> params){
         PageUtils page = skuService.queryPage(params);

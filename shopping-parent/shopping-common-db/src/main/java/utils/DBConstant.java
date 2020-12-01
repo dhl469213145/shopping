@@ -1,6 +1,6 @@
 package utils;
 
-public class Constant {
+public class DBConstant extends Constant {
 
     /**
      * 当前页码

@@ -13,10 +13,18 @@
     <description>网关</description>
     <modules>
         <module>shopping-gateway-user</module>
+        <module>showpping-gateway-master</module>
+        <module>shopping-gateway-business</module>
     </modules>
 
 
     <dependencies>
+        <!--<dependency>
+            <groupId>shopping</groupId>
+            <artifactId>shopping-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>-->
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -29,6 +37,18 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>shopping</groupId>
+            <artifactId>shopping-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--redis-->

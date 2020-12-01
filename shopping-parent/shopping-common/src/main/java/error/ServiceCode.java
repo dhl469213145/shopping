@@ -3,11 +3,12 @@ package error;
 
 import api.IResultCode;
 
-public enum DBServiceCode implements IResultCode {
+public enum ServiceCode implements IResultCode {
     DB_SUCESS(0, "操作成功"),
     DB_RETURN(200, "服务返回正常"),
     DB_PARAM_NULL(300, "参数为空"),
     DB_PARAM_ERROR(301, "传入参数有误"),
+    DB_UNAUTHORIZE(401, "未授权"),
     DB_SERVICE_OK(20100, "服务正常"),
     DB_SERVICE_UNKNOWN_ERROR(20101, "未知异常"),
     DB_SERVICE_AGENT_ERROR(20102, "DBServiceAgent异常"),
@@ -63,7 +64,7 @@ public enum DBServiceCode implements IResultCode {
         return this.message;
     }
 
-    private DBServiceCode(final int code, final String message) {
+    private ServiceCode(final int code, final String message) {
         this.code = code;
         this.message = message;
     }

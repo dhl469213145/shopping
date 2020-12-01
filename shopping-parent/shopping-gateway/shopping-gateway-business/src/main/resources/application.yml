@@ -1,5 +1,5 @@
 server:
-  port: 18002
+  port: 18003
 
 eureka:
   client:
@@ -10,7 +10,7 @@ eureka:
 
 spring:
   application:
-    name: gateway-user
+    name: gateway-business
   cloud:
     gateway:
       #[跨域]
@@ -26,10 +26,10 @@ spring:
       #[路由]
       routes:
           #[路由-唯一标识]
-        - id: shopping_route_users
+        - id: shopping_route_goods
           #[路由-映射地址]
 #          uri: http://127.0.0.1:18010
-          uri: lb://user
+          uri: lb://goods
           #[路由-规则配置]
           predicates:
             #用户请求的域名规则，所有以 shopping.com的请求都会路由到  googd服务

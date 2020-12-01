@@ -1,5 +1,5 @@
 server:
-  port: 18002
+  port: 18001
 
 eureka:
   client:
@@ -10,7 +10,7 @@ eureka:
 
 spring:
   application:
-    name: gateway-user
+    name: gateway-master
   cloud:
     gateway:
       #[跨域]
@@ -25,22 +25,22 @@ spring:
               -GET
       #[路由]
       routes:
-          #[路由-唯一标识]
-        - id: shopping_route_users
+        #[路由-唯一标识]
+        - id: shopping_route_master_to_user
           #[路由-映射地址]
-#          uri: http://127.0.0.1:18010
-          uri: lb://user
+          #          uri: http://127.0.0.1:18010
+          uri: lb://gateway-user
           #[路由-规则配置]
           predicates:
             #用户请求的域名规则，所有以 shopping.com的请求都会路由到  googd服务
-#            - Host= shopping.com
+            #            - Host= shopping.com
             #所有以 /brand 开头的请求都会路由到  googd服务
-            - Path= /**
+            - Path= /shopping-gateway-user/**
           filters:
             #忽略请求中的上个节点。  eg.  /shopping/findOne  ->  /findOne
-#            - StripPrefix=1
+            - StripPrefix=1
             #在请求url上加上前缀   eg.   /findOne   ->   /brand/findOne
-#            - PrefixPath= /brand
+            #            - PrefixPath= /brand
 
             - name: RequestRateLimiter  #请求数限流 名字不能随便写 ，使用默认的facatory
               args:

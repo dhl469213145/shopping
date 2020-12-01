@@ -21,12 +21,12 @@ public class Query<T> {
 		long curPage = 1;
 		long limit = 10;
 
-		if (params.get(Constant.PAGE) != null) {
-			curPage = Long.parseLong(String.valueOf(params.get(Constant.PAGE)));
+		if (params.get(DBConstant.PAGE) != null) {
+			curPage = Long.parseLong(String.valueOf(params.get(DBConstant.PAGE)));
 			//     curPage=(Long)params.get(Constant.PAGE);
 		}
-		if (params.get(Constant.LIMIT) != null) {
-			limit = Long.parseLong(String.valueOf(params.get(Constant.LIMIT)));
+		if (params.get(DBConstant.LIMIT) != null) {
+			limit = Long.parseLong(String.valueOf(params.get(DBConstant.LIMIT)));
 			//  limit=(Long)params.get(Constant.LIMIT);
 		}
 
@@ -34,16 +34,16 @@ public class Query<T> {
 		Page<T> page = new Page<>(curPage, limit);
 
 		//分页参数
-		params.put(Constant.PAGE, page);
+		params.put(DBConstant.PAGE, page);
 
 		//排序字段
 		//防止SQL注入（因为sidx、order是通过拼接SQL实现排序的，会有SQL注入风险）
-		String orderField = SQLFilter.sqlInject((String) params.get(Constant.ORDER_FIELD));
-		String order = (String) params.get(Constant.ORDER);
+		String orderField = SQLFilter.sqlInject((String) params.get(DBConstant.ORDER_FIELD));
+		String order = (String) params.get(DBConstant.ORDER);
 
 		//前端字段排序
 		if (!StringUtils.isEmpty(orderField) && !StringUtils.isEmpty(order)) {
-			if (Constant.ASC.equalsIgnoreCase(order)) {
+			if (DBConstant.ASC.equalsIgnoreCase(order)) {
 				return page.setAsc(orderField);
 			} else {
 				return page.setDesc(orderField);

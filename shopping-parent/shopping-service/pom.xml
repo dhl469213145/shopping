@@ -13,10 +13,10 @@
     <description>业务服务父工程</description>
     <modules>
         <module>shopping-service-goods</module>
+        <module>shopping-service-user</module>
     </modules>
 
     <dependencies>
-        <!--对changgou-common的依赖-->
         <dependency>
             <groupId>shopping</groupId>
             <artifactId>shopping-common-db</artifactId>
