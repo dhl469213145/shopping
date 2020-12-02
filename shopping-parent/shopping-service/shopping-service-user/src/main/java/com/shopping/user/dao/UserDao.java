@@ -1,8 +1,8 @@
 package com.shopping.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.shopping.user.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import pojo.entity.UserEntity;
 
 /**
  * 用户表

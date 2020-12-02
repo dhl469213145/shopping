@@ -14,6 +14,8 @@
 
 package utils;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 
@@ -788,5 +790,16 @@ public class BCrypt {
 			ret |= hashed_bytes[i] ^ try_bytes[i];
 		}
 		return ret == 0;
+	}
+
+
+	public static void main(String[] args) {
+
+		String password = "123456";
+		String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+		System.out.println(hashed);
+
+		System.out.println(checkpw("123456","$2a$10$KMmF1Hmh4g1AEeyD2Z6IyeEGvlzrkwhimdMJ8XSro4eCeLG58tq.O"));
+
 	}
 }

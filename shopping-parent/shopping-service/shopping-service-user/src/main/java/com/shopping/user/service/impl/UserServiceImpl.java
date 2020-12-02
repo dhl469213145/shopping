@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.shopping.user.dao.UserDao;
-import com.shopping.user.entity.UserEntity;
 import com.shopping.user.service.UserService;
 import org.springframework.stereotype.Service;
+import pojo.entity.UserEntity;
 import utils.PageUtils;
 import utils.Query;
 

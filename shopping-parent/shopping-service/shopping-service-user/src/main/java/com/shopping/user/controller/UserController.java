@@ -3,7 +3,6 @@ package com.shopping.user.controller;
 import api.R;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.shopping.user.entity.UserEntity;
 import com.shopping.user.service.UserService;
 import error.RRException;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import pojo.entity.UserEntity;
 import utils.*;
 
 import javax.servlet.http.Cookie;
@@ -34,6 +34,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("rechargeable/user")
 public class UserController {
+
     @Autowired
     private UserService userService;
 
@@ -66,9 +67,9 @@ public class UserController {
     @GetMapping("/login")
     public R login(HttpServletResponse response, String username, String password) {
         // 查找该用户
-        UserEntity userEntity = userService.getOne(new QueryWrapper<UserEntity>().eq("", username));
+        UserEntity userEntity = userService.getOne(new QueryWrapper<UserEntity>().eq("username", username));
         if(ObjectUtils.isEmpty(userEntity)) {
-            log.error("登录失败，未找到用户信息！[username]=s%;[password]=s%", username);
+            log.error("登录失败，未找到用户信息！[username]={};[password]={}", username);
             throw new RRException("登录失败，用户名或密码错误！");
         }
 

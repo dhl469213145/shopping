@@ -2,7 +2,7 @@ package com.shopping.user.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.shopping.user.entity.UserEntity;
+import pojo.entity.UserEntity;
 import utils.PageUtils;
 
 import java.util.Map;
