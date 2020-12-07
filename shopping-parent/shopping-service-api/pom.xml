@@ -17,7 +17,6 @@
     </modules>
 
     <dependencies>
-        <!--对changgou-common的依赖-->
         <dependency>
             <groupId>shopping</groupId>
             <artifactId>shopping-common-db</artifactId>

@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(basePackages = "com.changgou.auth.dao")
+//@MapperScan(basePackages = "com.changgou.auth.dao")
 @EnableFeignClients(basePackages = {"feign"})
 public class OAuthApplication {
 
