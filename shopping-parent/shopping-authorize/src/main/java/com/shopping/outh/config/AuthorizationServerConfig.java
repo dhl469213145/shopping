@@ -53,19 +53,19 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource).clients(clientDetails());
-        /*clients.inMemory()
+//        clients.jdbc(dataSource).clients(clientDetails());
+        clients.inMemory()
                 .withClient("changgou")          //客户端id
                 .secret("changgou")                      //秘钥
-                .redirectUris("http://localhost")       //重定向地址
-                .accessTokenValiditySeconds(3600)          //访问令牌有效期
-                .refreshTokenValiditySeconds(3600)         //刷新令牌有效期
+                .redirectUris("http://localhost:18020/login")       //重定向地址
+                .accessTokenValiditySeconds(60)          //访问令牌有效期
+                .refreshTokenValiditySeconds(60)         //刷新令牌有效期
                 .authorizedGrantTypes(
                         "authorization_code",          //根据授权码生成令牌
-                        "client_credentials",          //客户端认证
-                        "refresh_token",                //刷新令牌
-                        "password")                     //密码方式认证
-                .scopes("app");*/                         //客户端范围，名称自定义，必填
+//                        "client_credentials",          //客户端认证
+                        "refresh_token"/*,                //刷新令牌
+                        "password"*/)                     //密码方式认证
+                .scopes("app");                         //客户端范围，名称自定义，必填
     }
 
     /***
@@ -89,9 +89,11 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.allowFormAuthenticationForClients()
+                .checkTokenAccess("isAuthenticated()");
+        /*oauthServer.allowFormAuthenticationForClients()
                 .passwordEncoder(new BCryptPasswordEncoder())
                 .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("isAuthenticated()");*/
     }
 
 

@@ -795,11 +795,11 @@ public class BCrypt {
 
 	public static void main(String[] args) {
 
-		String password = "123456";
+		String password = "changgou";
 		String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
 		System.out.println(hashed);
 
-		System.out.println(checkpw("123456","$2a$10$KMmF1Hmh4g1AEeyD2Z6IyeEGvlzrkwhimdMJ8XSro4eCeLG58tq.O"));
+		System.out.println(checkpw("123456","$2a$10$Yvkp3xzDcri6MAsPIqnzzeGBHez1QZR3A079XDdmNU4R725KrkXi2"));
 
 	}
 }
